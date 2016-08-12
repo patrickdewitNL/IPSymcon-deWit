@@ -10,11 +10,15 @@
 			
 			$this->RequireParent("{6DC3D946-0D31-450F-A8C6-C42DB8D7D4F1}");
 			
-			$pid = $this->GetParent();
-					if ($pid) {
-						$name = IPS_GetName($pid);
-						if ($name == "Serial Port") IPS_SetName($pid, "Serial Port for P1 smartmeter");
-					}
+			
+			$instance = IPS_GetInstance($this->InstanceID);
+			$pid= $instance['ConnectionID'];
+			
+			
+			if ($pid) {
+				$name = IPS_GetName($pid);
+				if ($name == "Serial Port") IPS_SetName($pid, "Serial Port for P1 smartmeter");
+			}
 			
 			COMPort_SetBaudRate($pid, 115200);
 			
@@ -26,9 +30,6 @@
 		{
 			//Never delete this line!
 			parent::ApplyChanges();
-			
-			
-			
 			
 			$keep = true;
 			$this->MaintainVariable("consumptionT1", "Afname laagtarief", 2, "Electricity", 10, $keep);
@@ -45,22 +46,13 @@
 		public function ReceiveData($JSONString)
 		{
 			$data = json_decode($JSONString);
+			
+			
 			IPS_LogMessage("P1 Smart meter", utf8_decode($data->Buffer));
 		
 		}
 		
-		 protected function GetParent($id = 0)
-		{
-        $parent = 0;
-			if ($id == 0) $id = $this->InstanceID;
-			if (IPS_InstanceExists($id)) {
-				$instance = IPS_GetInstance($id);
-				$parent = $instance['ConnectionID'];
-			} else {
-				$this->debug(__FUNCTION__, "Instance #$id doesn't exists");
-			}
-			return $parent;
-		}
+		
 
 	}
 ?>
