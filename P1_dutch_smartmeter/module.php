@@ -68,7 +68,7 @@
 					
 					// Get and save gas usage
 					preg_match('@(0-1:24\.2\.1) ?(\(.+\()(\d+)\.(\d+)@', $Telegram, $matches);
-					SetValue($this->GetIDForIdent("consumptionGas"), $matches[3] + 0.001 * $matches[4];);
+					SetValue($this->GetIDForIdent("consumptionGas"), $matches[3] + 0.001 * $matches[4]);
 
 					
 					// get afname-laag  
