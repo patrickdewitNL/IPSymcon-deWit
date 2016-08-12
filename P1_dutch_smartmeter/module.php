@@ -24,6 +24,11 @@
 			
 			$this->RegisterPropertyString("Username", "");
 			$this->RegisterPropertyString("Password", "");
+			
+			$this->RegisterVariableString('Buffer', 'Buffer', "", -1);
+			IPS_SetHidden($this->GetIDForIdent('Buffer'), true);
+			
+			
 		}
 	
 		public function ApplyChanges()
@@ -45,27 +50,52 @@
 		
 		public function ReceiveData($JSONString)
 		{
+			
 			$data = json_decode($JSONString);
+            
+			//entry for data from parent
+            $buffer = $this->GetBuffer();
 			
 			$telegram = '';
 			// continue to add
-			$temp .= utf8_decode($data->Buffer);
+			$buffer .= utf8_decode($data->Buffer);
 
 			// When a ! is found we have a new complete telegram
-			if (strpos($temp, '!'))
+			if (strpos($buffer, '!'))
 			{
-					$telegram = $temp;
+					IPS_LogMessage("P1 Smart meter compleet telegram", $telegram);
 
-					$temp = '';
+					$buffer = '';
 			}
 					
 			
+			$this->SetBuffer($buffer);
 			
-			IPS_LogMessage("P1 Smart meter", $telegram);
 		
 		}
 		
-		
+		  //------------------------------------------------------------------------------
+		/**
+		 * Get status variable Buffer
+		 * contains incoming data from IO, act as regVar
+		 * @return String
+		 */
+		private function GetBuffer()
+		{
+			$id = $this->GetIDForIdent('Buffer');
+			$val = GetValueString($id);
+			return $val;
+		}
+		//------------------------------------------------------------------------------
+		/**
+		 * Set status variable Buffer
+		 * @param String $val
+		 */
+		private function SetBuffer($val)
+		{
+			$id = $this->GetIDForIdent('Buffer');
+			SetValueString($id, $val);
+		}
 
 	}
 ?>
