@@ -3,7 +3,7 @@
 	class P1SmartMeter extends IPSModule
 	{
 		
-		private $buffer = '';
+		public $buffer = '';
 		
 		
 		public function Create()
@@ -28,8 +28,8 @@
 			$this->RegisterPropertyString("Username", "");
 			$this->RegisterPropertyString("Password", "");
 			
-			$this->RegisterVariableString('Buffer', 'Buffer', "", -1);
-			IPS_SetHidden($this->GetIDForIdent('Buffer'), true);
+		//	$this->RegisterVariableString('Buffer', 'Buffer', "", -1);
+	//		IPS_SetHidden($this->GetIDForIdent('Buffer'), true);
 			
 			
 		}
@@ -61,14 +61,14 @@
 			
 			$telegram = '';
 			// continue to add
-			$this->$buffer .= utf8_decode($data->Buffer);
+			$this->buffer .= utf8_decode($data->Buffer);
 
 			// When a ! is found we have a new complete telegram
-			if (strpos($this->$buffer, '!'))
+			if (strpos($this->buffer, '!'))
 			{
-					IPS_LogMessage("P1 Smart meter compleet telegram", $this->$buffer);
+					IPS_LogMessage("P1 Smart meter compleet telegram", $this->buffer);
 
-					$this->$buffer = '';
+					$this->buffer = '';
 			}
 					
 			
