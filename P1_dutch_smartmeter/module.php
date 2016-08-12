@@ -11,25 +11,27 @@
 			//Never delete this line!
 			parent::Create();
 			
+			// Requires a Serialport I/O as parent.
 			$this->RequireParent("{6DC3D946-0D31-450F-A8C6-C42DB8D7D4F1}");
-			
-			
 			$instance = IPS_GetInstance($this->InstanceID);
-			$pid= $instance['ConnectionID'];
-			
+			$pid = $instance['ConnectionID'];
 			
 			if ($pid) {
 				$name = IPS_GetName($pid);
 				if ($name == "Serial Port") IPS_SetName($pid, "Serial Port for P1 smartmeter");
 			}
 			
+			// Seems to work for most P1 meters, so set this as standard.
 			COMPort_SetBaudRate($pid, 115200);
 			
-			$this->RegisterPropertyString("Username", "");
+			// Set variables used for settings.
+			$this->RegisterPropertyInteger("DaysToKeep", "");
 			$this->RegisterPropertyString("Password", "");
 			
-		//	$this->RegisterVariableString('Buffer', 'Buffer', "", -1);
-	//		IPS_SetHidden($this->GetIDForIdent('Buffer'), true);
+			
+			// Make a variable that works as buffer for received data. Might change in future for Class build-in buffers
+			$this->RegisterVariableString('Buffer', 'Buffer', "", -1);
+			IPS_SetHidden($this->GetIDForIdent('Buffer'), true);
 			
 			
 		}
@@ -57,22 +59,22 @@
 			$data = json_decode($JSONString);
             
 			//entry for data from parent
-            //$buffer = $this->GetBuffer();
+            $buffer = $this->GetBuffer();
 			
 			$telegram = '';
 			// continue to add
-			$this->buffer .= utf8_decode($data->Buffer);
+			$buffer .= utf8_decode($data->Buffer);
 
 			// When a ! is found we have a new complete telegram
-			if (strpos($this->buffer, '!'))
+			if (strpos($buffer, '!'))
 			{
-					IPS_LogMessage("P1 Smart meter compleet telegram", $this->buffer);
+					IPS_LogMessage("P1 Smart meter compleet telegram", $buffer);
 
-					$this->buffer = '';
+					$buffer = '';
 			}
 					
 			
-			//$this->SetBuffer($buffer);
+			$this->SetBuffer($buffer);
 			
 		
 		}
