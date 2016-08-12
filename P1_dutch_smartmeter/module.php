@@ -28,6 +28,6 @@
 			$data = json_decode($JSONString);
 			IPS_LogMessage("P1 Smart meter", utf8_decode($data->Buffer));
 		
-	
+		}
 	}
 ?>
