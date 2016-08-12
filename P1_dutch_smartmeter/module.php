@@ -47,8 +47,21 @@
 		{
 			$data = json_decode($JSONString);
 			
+			$telegram = '';
+			// continue to add
+			$temp .= utf8_decode($data->Buffer);
+
+			// When a ! is found we have a new complete telegram
+			if (strpos($temp, '!'))
+			{
+					$telegram = $temp;
+
+					$temp = '';
+			}
+					
 			
-			IPS_LogMessage("P1 Smart meter", utf8_decode($data->Buffer));
+			
+			IPS_LogMessage("P1 Smart meter", $telegram);
 		
 		}
 		
