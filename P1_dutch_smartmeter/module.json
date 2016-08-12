@@ -1,0 +1,11 @@
+{
+	"id": "{B4AFD4B2-F15D-4DD5-A495-C644B6FC7778}",
+	"name": "P1 Smart Meter",
+	"type": 3,
+	"vendor": "",
+	"aliases": ["P1 Smart meter"],
+	"parentRequirements": [],
+	"childRequirements": [],
+	"implemented": [],
+	"prefix": "P1"
+}
