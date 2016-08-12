@@ -56,7 +56,7 @@
 		
 		private function ParseP1Telegram($Telegram)
 		{
-				if ($telegram != '')
+				if ($Telegram != '')
 				{
 					// Get and save current usage
 					preg_match('@(1-0:1\.7\.0) ?\((\d+)\.(\d+)@', $Telegram, $matches);
