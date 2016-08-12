@@ -3,6 +3,9 @@
 	class P1SmartMeter extends IPSModule
 	{
 		
+		private $buffer = '';
+		
+		
 		public function Create()
 		{
 			//Never delete this line!
@@ -54,7 +57,7 @@
 			$data = json_decode($JSONString);
             
 			//entry for data from parent
-            $buffer = $this->GetBuffer();
+            //$buffer = $this->GetBuffer();
 			
 			$telegram = '';
 			// continue to add
@@ -63,13 +66,13 @@
 			// When a ! is found we have a new complete telegram
 			if (strpos($buffer, '!'))
 			{
-					IPS_LogMessage("P1 Smart meter compleet telegram", $telegram);
+					IPS_LogMessage("P1 Smart meter compleet telegram", $buffer);
 
 					$buffer = '';
 			}
 					
 			
-			$this->SetBuffer($buffer);
+			//$this->SetBuffer($buffer);
 			
 		
 		}
