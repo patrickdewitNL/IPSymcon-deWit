@@ -48,5 +48,19 @@
 			IPS_LogMessage("P1 Smart meter", utf8_decode($data->Buffer));
 		
 		}
+		
+		 protected function GetParent($id = 0)
+		{
+        $parent = 0;
+			if ($id == 0) $id = $this->InstanceID;
+			if (IPS_InstanceExists($id)) {
+				$instance = IPS_GetInstance($id);
+				$parent = $instance['ConnectionID'];
+			} else {
+				$this->debug(__FUNCTION__, "Instance #$id doesn't exists");
+			}
+			return $parent;
+		}
+
 	}
 ?>
