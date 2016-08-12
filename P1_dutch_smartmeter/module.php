@@ -20,6 +20,10 @@
 			//Never delete this line!
 			parent::ApplyChanges();
 			
+			$this->MaintainVariable("meterT1", "Afname dal", 2, "Electricity", 10, $keep);
+			$this->MaintainVariable("meterT2", "Afname hoogtarief", 2, "Electricity", 20, $keep);
+			$this->MaintainVariable("currentConsumption", "Huidig verbruik", 2, "Watt.3680", 30, $keep);
+
 			
 		}
 		
