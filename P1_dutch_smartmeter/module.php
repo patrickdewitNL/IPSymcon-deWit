@@ -48,32 +48,68 @@
 			$this->MaintainVariable("productionT1", "Productie laagtarief", 2, "Electricity", 10, $keep);
 			$this->MaintainVariable("productionT2", "Productie hoogtarief", 2, "Electricity", 20, $keep);
 			$this->MaintainVariable("currentProduction", "Huidig opwek", 2, "Watt.3680", 30, $keep);
+			$this->MaintainVariable("consumptionGas", "Gas afname", 2, "Gas", 30, $keep);
 
 
 			
 		}
+		
+		private function ParseP1Telegram($Telegram)
+		{
+				if ($telegram != '')
+				{
+					// Get and save current usage
+					preg_match('@(1-0:1\.7\.0) ?\((\d+)\.(\d+)@', $Telegram, $matches);
+					SetValue($this->GetIDForIdent("currentConsumption"), $matches[2] * 1000 + $matches[3]);
+
+					// Get and save current production
+					preg_match('@(1-0:2\.7\.0) ?\((\d+)\.(\d+)@', $Telegram, $matches);
+					SetValue($this->GetIDForIdent("currentProduction"), $matches[2] * 1000 + $matches[3]);
+					
+					// Get and save gas usage
+					preg_match('@(0-1:24\.2\.1) ?(\(.+\()(\d+)\.(\d+)@', $Telegram, $matches);
+					SetValue($this->GetIDForIdent("consumptionGas"), $matches[3] + 0.001 * $matches[4];);
+
+					
+					// get afname-laag  
+					//preg_match('@(1-0:1\.8\.1\() ?(\d+)\.(\d+)@', $telegram, $matches);
+					//$afname_laag = $matches[2] + round(0.001 * $matches[3], 1);
+					//SetValue(22543 /*[Verbruik\Afname: dal]*/ , $afname_laag);
+
+					// get afname-hoog
+					//preg_match('@(1-0:1\.8\.2\() ?(\d+)\.(\d+)@', $telegram, $matches);
+					//$afname_hoog = $matches[2] + round(0.001 * $matches[3], 1);
+					//SetValue(11263 /*[Verbruik\Afname: piek]*/ , $afname_hoog);
+				}	
+			
+		}
+		
+		
+		
+		
+		
+		
 		
 		public function ReceiveData($JSONString)
 		{
 			
 			$data = json_decode($JSONString);
             
-			//entry for data from parent
+			//data from buffer variable
             $buffer = $this->GetBuffer();
 			
-			$telegram = '';
 			// continue to add
 			$buffer .= utf8_decode($data->Buffer);
 
 			// When a ! is found we have a new complete telegram
 			if (strpos($buffer, '!'))
 			{
-					IPS_LogMessage("P1 Smart meter compleet telegram", $buffer);
-
+					IPS_LogMessage("P1 Smart meter", "Received new P1 telegram");
+					ParseP1Telegram($buffer);
 					$buffer = '';
 			}
 					
-			
+			// Set new data in buffer
 			$this->SetBuffer($buffer);
 			
 		
