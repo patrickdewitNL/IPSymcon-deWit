@@ -8,7 +8,18 @@
 			//Never delete this line!
 			parent::Create();
 			
-			$this->RequireParent("{6DC3D946-0D31-450F-A8C6-C42DB8D7D4F1}");
+			$guid = '"{6DC3D946-0D31-450F-A8C6-C42DB8D7D4F1}"';
+			
+			$this->RequireParent($guid);
+			
+			$pid = $this->GetParent();
+			if ($pid) {
+				$name = IPS_GetName($pid);
+				if ($name == "Serial Port") IPS_SetName($pid, "Serial Port for P1 smartmeter");
+			}
+			
+			COMPort_SetBaudRate($pid, 115200);
+	
 			
 			
 			$this->RegisterPropertyString("Username", "");
