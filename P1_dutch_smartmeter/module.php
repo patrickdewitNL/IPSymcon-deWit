@@ -61,14 +61,14 @@
 			
 			$telegram = '';
 			// continue to add
-			$buffer .= utf8_decode($data->Buffer);
+			$this->$buffer .= utf8_decode($data->Buffer);
 
 			// When a ! is found we have a new complete telegram
-			if (strpos($buffer, '!'))
+			if (strpos($this->$buffer, '!'))
 			{
-					IPS_LogMessage("P1 Smart meter compleet telegram", $buffer);
+					IPS_LogMessage("P1 Smart meter compleet telegram", $this->$buffer);
 
-					$buffer = '';
+					$this->$buffer = '';
 			}
 					
 			
