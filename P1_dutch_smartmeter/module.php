@@ -20,9 +20,17 @@
 			//Never delete this line!
 			parent::ApplyChanges();
 			
-			$this->MaintainVariable("meterT1", "Afname dal", 2, "Electricity", 10, $keep);
-			$this->MaintainVariable("meterT2", "Afname hoogtarief", 2, "Electricity", 20, $keep);
+			
+			
+			
+			$keep = true;
+			$this->MaintainVariable("consumptionT1", "Afname laagtarief", 2, "Electricity", 10, $keep);
+			$this->MaintainVariable("consumptionT2", "Afname hoogtarief", 2, "Electricity", 20, $keep);
 			$this->MaintainVariable("currentConsumption", "Huidig verbruik", 2, "Watt.3680", 30, $keep);
+			$this->MaintainVariable("productionT1", "Productie laagtarief", 2, "Electricity", 10, $keep);
+			$this->MaintainVariable("productionT2", "Productie hoogtarief", 2, "Electricity", 20, $keep);
+			$this->MaintainVariable("currentProduction", "Huidig opwek", 2, "Watt.3680", 30, $keep);
+
 
 			
 		}
