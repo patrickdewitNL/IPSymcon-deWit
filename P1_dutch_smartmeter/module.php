@@ -105,7 +105,7 @@
 			if (strpos($buffer, '!'))
 			{
 					IPS_LogMessage("P1 Smart meter", "Received new P1 telegram");
-					ParseP1Telegram($buffer);
+					$this->ParseP1Telegram($buffer);
 					$buffer = '';
 			}
 					
