@@ -1,7 +1,9 @@
 {
 	"elements":
 	[
-		{ "name": "DaysToKeep", "type": "ValidationTextBox", "caption": "Days to keep" },
-		{ "name": "Password", "type": "PasswordTextBox", "caption": "Password" }
+		{ "type": "Label", "label": "Raw data is automatically deleted after x days" }
+		{ "name": "DaysToKeepRawData", "type": "NumberSpinner", "caption": "Days to keep" },
 	]
 }
+
+

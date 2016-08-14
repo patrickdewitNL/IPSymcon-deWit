@@ -25,9 +25,30 @@
 			COMPort_SetBaudRate($pid, 115200);
 			
 			// Set variables used for settings.
-			$this->RegisterPropertyInteger("DaysToKeep", "");
-			$this->RegisterPropertyString("Password", "");
+			$this->RegisterPropertyInteger("DaysToKeep", "10");
 			
+			// Set variables for smart meter data
+			// Get ObjectID for first archive
+			$archives = IPS_GetInstanceListByModuleID("{43192F0B-135B-4CE7-A0A7-1475603F3060}");
+ 
+			
+						
+			$this->RegisterVariableFloat("consumptionT1", "Afname laagtarief", 2, "Electricity", 10);
+			$this->RegisterVariableFloat("consumptionT2", "Afname hoogtarief", 2, "Electricity", 20);
+			$this->RegisterVariableFloat("currentConsumption", "Huidig verbruik", 2, "Watt.3680", 30);
+			AC_SetLoggingStatus($this->GetIDForIdent('currentConsumption'), $archives[0], true)
+			
+			$this->RegisterVariableFloat("productionT1", "Productie laagtarief", 2, "Electricity", 10);
+			$this->RegisterVariableFloat("productionT2", "Productie hoogtarief", 2, "Electricity", 20);
+			$this->RegisterVariableFloat("currentProduction", "Huidig opwek", 2, "Watt.3680", 30);
+			AC_SetLoggingStatus($this->GetIDForIdent('currentProduction'), $archives[0], true)
+			
+			$this->RegisterVariableFloat("consumptionGas", "Gas afname", 2, "Gas", 40);
+			AC_SetLoggingStatus($this->GetIDForIdent('consumptionGas'), $archives[0], true)
+			
+			// Set timer for automatic data removal for historic data
+			$this->RegisterTimer("DataRemoval", $this->ReadPropertyInteger("DaystoKeep"), 'P1_PurgeOldData');
+
 			
 			// Make a variable that works as buffer for received data. Might change in future for Class build-in buffers
 			$this->RegisterVariableString('Buffer', 'Buffer', "", -1);
@@ -41,18 +62,17 @@
 			//Never delete this line!
 			parent::ApplyChanges();
 			
-			$keep = true;
-			$this->MaintainVariable("consumptionT1", "Afname laagtarief", 2, "Electricity", 10, $keep);
-			$this->MaintainVariable("consumptionT2", "Afname hoogtarief", 2, "Electricity", 20, $keep);
-			$this->MaintainVariable("currentConsumption", "Huidig verbruik", 2, "Watt.3680", 30, $keep);
-			$this->MaintainVariable("productionT1", "Productie laagtarief", 2, "Electricity", 10, $keep);
-			$this->MaintainVariable("productionT2", "Productie hoogtarief", 2, "Electricity", 20, $keep);
-			$this->MaintainVariable("currentProduction", "Huidig opwek", 2, "Watt.3680", 30, $keep);
-			$this->MaintainVariable("consumptionGas", "Gas afname", 2, "Gas", 30, $keep);
-
-
+			$this->SetTimerInterval("DataRemoval", $this->ReadPropertyInteger("DaystoKeep")*24*60*60*1000);
+		}
+		
+		public function PurgeOldData()
+		{
+			IPS_LogMessage("P1 Smart meter", "Purge old data called");
+			
 			
 		}
+		
+		
 		
 		private function ParseP1Telegram($Telegram)
 		{
