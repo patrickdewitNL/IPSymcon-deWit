@@ -3,9 +3,6 @@
 	class P1SmartMeter extends IPSModule
 	{
 		
-		public $buffer = '';
-		
-		
 		public function Create()
 		{
 			//Never delete this line!
@@ -33,28 +30,21 @@
  
 			
 						
-			$this->RegisterVariableFloat("consumptionT1", "Afname laagtarief", 2, "Electricity", 10);
-			$this->RegisterVariableFloat("consumptionT2", "Afname hoogtarief", 2, "Electricity", 20);
-			$this->RegisterVariableFloat("currentConsumption", "Huidig verbruik", 2, "Watt.3680", 30);
+			$this->RegisterVariableFloat("consumptionT1", "Electricity consumption low", 2, "Electricity", 10);
+			$this->RegisterVariableFloat("consumptionT2", "Electricity consumption high", 2, "Electricity", 20);
+			$this->RegisterVariableFloat("currentConsumption", "Current usage", 2, "Watt.3680", 30);
 			AC_SetLoggingStatus($this->GetIDForIdent('currentConsumption'), $archives[0], true)
 			
-			$this->RegisterVariableFloat("productionT1", "Productie laagtarief", 2, "Electricity", 10);
-			$this->RegisterVariableFloat("productionT2", "Productie hoogtarief", 2, "Electricity", 20);
-			$this->RegisterVariableFloat("currentProduction", "Huidig opwek", 2, "Watt.3680", 30);
+			$this->RegisterVariableFloat("productionT1", "Electricity production low", 2, "Electricity", 10);
+			$this->RegisterVariableFloat("productionT2", "Electricity production high", 2, "Electricity", 20);
+			$this->RegisterVariableFloat("currentProduction", "Current production", 2, "Watt.3680", 30);
 			AC_SetLoggingStatus($this->GetIDForIdent('currentProduction'), $archives[0], true)
 			
-			$this->RegisterVariableFloat("consumptionGas", "Gas afname", 2, "Gas", 40);
+			$this->RegisterVariableFloat("consumptionGas", "Gas consumption", 2, "Gas", 40);
 			AC_SetLoggingStatus($this->GetIDForIdent('consumptionGas'), $archives[0], true)
 			
 			// Set timer for automatic data removal for historic data
 			$this->RegisterTimer("DataRemoval", $this->ReadPropertyInteger("DaystoKeep"), 'P1_PurgeOldData');
-
-			
-			// Make a variable that works as buffer for received data. Might change in future for Class build-in buffers
-			$this->RegisterVariableString('Buffer', 'Buffer', "", -1);
-			IPS_SetHidden($this->GetIDForIdent('Buffer'), true);
-			
-			
 		}
 	
 		public function ApplyChanges()
@@ -104,10 +94,7 @@
 			
 		}
 		
-		
-		
-		
-		
+
 		
 		
 		public function ReceiveData($JSONString)
@@ -134,29 +121,7 @@
 			
 		
 		}
-		
-		  //------------------------------------------------------------------------------
-		/**
-		 * Get status variable Buffer
-		 * contains incoming data from IO, act as regVar
-		 * @return String
-		 */
-		private function GetBuffer()
-		{
-			$id = $this->GetIDForIdent('Buffer');
-			$val = GetValueString($id);
-			return $val;
-		}
-		//------------------------------------------------------------------------------
-		/**
-		 * Set status variable Buffer
-		 * @param String $val
-		 */
-		private function SetBuffer($val)
-		{
-			$id = $this->GetIDForIdent('Buffer');
-			SetValueString($id, $val);
-		}
+
 
 	}
 ?>
