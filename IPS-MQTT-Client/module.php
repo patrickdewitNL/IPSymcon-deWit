@@ -7,8 +7,8 @@
   version 0.1.0
   date 2017-03-18
  */
-include_once(__DIR__ . "module_helper.php");
-include_once(__DIR__ . "TFphpMQTT.php");
+include_once(__DIR__ . "/module_helper.php");
+include_once(__DIR__ . "/TFphpMQTT.php");
 
 // Klassendefinition
 class IPS_MQTT_Client extends T2FModule {
