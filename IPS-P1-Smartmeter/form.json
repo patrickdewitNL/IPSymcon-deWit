@@ -1,8 +1,8 @@
 {
 	"elements":
 	[
-		{ "type": "Label", "label": "Raw data is automatically deleted after x days" },
-		{ "name": "DaysToKeep", "type": "NumberSpinner", "caption": "Days to keep" }
+		{ "type": "Label", "label": "To prevent build-up from data, the raw data is automatically deleted after a given amount of days" },
+		{ "name": "DaysToKeep", "type": "NumberSpinner", "caption": "Days to keep:" }
 	]
 }
 
