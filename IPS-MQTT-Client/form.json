@@ -1,0 +1,14 @@
+{
+	"elements":
+	[
+		{"type": "ExpansionPanel",  "caption": "Authentication & identification", 
+			"items": [
+				{ "type": "Label", "caption": "Set the username and corresponding password for the MQTT broker:" },
+				{ "name": "User", "type": "ValidationTextBox", "caption": "Username" },
+				{ "name": "Password", "type": "PasswordTextBox", "caption": "Password" },
+				{ "type": "Label", "caption": "Set the client ID that the MQTT Client will use. Has to be unique to the broker:" },
+				{ "name": "ClientID", "type": "ValidationTextBox", "caption": "MQTT client ID" }
+
+			]}
+	]
+}
