@@ -56,7 +56,7 @@
 			//Never delete this line!
 			parent::ApplyChanges();
 			
-			$this->SetTimerInterval("DataRemoval", $this->ReadPropertyInteger("DaystoKeep")*24*60*60*1000);
+			//$this->SetTimerInterval("DataRemoval", $this->ReadPropertyInteger("DaystoKeep")*24*60*60*1000);
 		}
 		
 		public function PurgeOldData()
