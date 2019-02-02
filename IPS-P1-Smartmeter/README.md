@@ -8,9 +8,9 @@ A sensor platform for Dutch Smart Meters which comply to DSMR (Dutch Smart Meter
 
 ### Contents
 
-1. [Functional scope](#1-functionalscope)
-2. [Voraussetzungen](#2-voraussetzungen)
-3. [Software-Installation](#3-software-installation)
+1. [Functional scope](#1-functional-scope)
+2. [Requirements](#2-requirements)
+3. [Software installation](#3-software-installation)
 4. [Einrichten der Instanzen in IP-Symcon](#4-einrichten-der-instanzen-in-ip-symcon)
 5. [Statusvariablen und Profile](#5-statusvariablen-und-profile)
 6. [WebFront](#6-webfront)
@@ -18,25 +18,21 @@ A sensor platform for Dutch Smart Meters which comply to DSMR (Dutch Smart Meter
 
 ### 1. Functional scope
 * Auswählbares Quellbild und auswählbare Auslöservariable
-* Einstellbare Anzahl von Bildern, welche gespeichert werden sollen
-* Erstellt ein Ereignis, welches auf Variablenaktualisierung der Auslöservariable reagiert
-* Das Ereignis kann manuell auf persönliche Bedürfnisse angepasst werden und wird nicht überschrieben
-* Bilder kriegen den Zeitpunkt des Auslösens als Namen
-* Bilder werden chronologisch von alt -> neu in der Kategorie Bilder angezeigt
-* Automatisches Löschen der ältesten Bilder, beim Erreichen der eingestellten maximalen Bilderanzahl
+
 
 ### 2. Requirements
 
 - IP-Symcon from Version 5.0
+- Serial port connected to smart meters' P1 port
 
 ### 3. Software-Installation
 
-Über das Modul-Control folgende URL hinzufügen.  
-`git://github.com/symcon/SymconMisc.git`  
+Please obtain this module via 
+`https://github.com/patrickdewitNL/IPSymcon-deWit.gitt`  
 
 ### 4. Setup in IP-Symcon
 
-- Unter "Instanz hinzufügen" ist das 'Bildarchiv'-Modul unter dem Hersteller '(Sonstige)' aufgeführt.  
+- Please select 'Add Instance' and search for  the P1 Smart Meter component.  
 
 __Konfigurationsseite__:
 
