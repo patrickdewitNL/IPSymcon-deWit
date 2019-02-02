@@ -16,20 +16,7 @@
 	
 			// Set variables used for settings.
 			$this->RegisterPropertyInteger("DaysToKeep", "10");
-			
-					
-			$this->RegisterVariableFloat("consumptionT1", "Electricity consumption low", "Electricity", 10);
-			$this->RegisterVariableFloat("consumptionT2", "Electricity consumption high", "Electricity", 20);
-			$this->RegisterVariableFloat("currentConsumption", "Current usage", "Watt.3680", 30);
-			
 
-			$this->RegisterVariableFloat("productionT1", "Electricity production low", "Electricity", 10);
-			$this->RegisterVariableFloat("productionT2", "Electricity production high", "Electricity", 20);
-			$this->RegisterVariableFloat("currentProduction", "Current production", "Watt.3680", 30);
-
-			$this->RegisterVariableFloat("consumptionGas", "Gas consumption", "Gas", 40);
-
-			
 			// Set timer for automatic data removal for historic data
 			$this->RegisterTimer("DataRemoval", 0, 'P1_PurgeOldData');
 		}
@@ -44,15 +31,14 @@
 			// Set variables for smart meter data
 			// Get ObjectID for first archive
 			$archives = IPS_GetInstanceListByModuleID("{43192F0B-135B-4CE7-A0A7-1475603F3060}");
- 
-			
-			AC_SetLoggingStatus($this->GetIDForIdent('consumptionT1'), $archives[0], true);
-			AC_SetLoggingStatus($this->GetIDForIdent('consumptionT2'), $archives[0], true);
-			AC_SetLoggingStatus($this->GetIDForIdent('currentConsumption'), $archives[0], true);
-			AC_SetLoggingStatus($this->GetIDForIdent('currentProduction'), $archives[0], true);
-			AC_SetLoggingStatus($this->GetIDForIdent('productionT1'), $archives[0], true);
-			AC_SetLoggingStatus($this->GetIDForIdent('productionT2'), $archives[0], true);
-			AC_SetLoggingStatus($this->GetIDForIdent('consumptionGas'), $archives[0], true);
+
+			AC_SetLoggingStatus($this->RegisterVariableFloat("consumptionT1", "Electricity consumption low", "Electricity", 10), $archives[0], true);
+			AC_SetLoggingStatus($this->RegisterVariableFloat("consumptionT2", "Electricity consumption high", "Electricity", 20), $archives[0], true);
+			AC_SetLoggingStatus($this->RegisterVariableFloat("currentConsumption", "Current usage", "Watt.3680", 30), $archives[0], true);
+			AC_SetLoggingStatus($this->RegisterVariableFloat("currentProduction", "Current production", "Watt.3680", 30), $archives[0], true);
+			AC_SetLoggingStatus($this->RegisterVariableFloat("productionT1", "Electricity production low", "Electricity", 10), $archives[0], true);
+			AC_SetLoggingStatus($this->RegisterVariableFloat("productionT2", "Electricity production high", "Electricity", 20), $archives[0], true);
+			AC_SetLoggingStatus($this->RegisterVariableFloat("consumptionGas", "Gas consumption", "Gas", 40), $archives[0], true);
 			
 		}
 		
