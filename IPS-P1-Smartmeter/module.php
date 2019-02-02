@@ -17,12 +17,7 @@
 			// Set variables used for settings.
 			$this->RegisterPropertyInteger("DaysToKeep", "10");
 			
-			// Set variables for smart meter data
-			// Get ObjectID for first archive
-			$archives = IPS_GetInstanceListByModuleID("{43192F0B-135B-4CE7-A0A7-1475603F3060}");
- 
-			
-						
+					
 			$this->RegisterVariableFloat("consumptionT1", "Electricity consumption low", "Electricity", 10);
 			$this->RegisterVariableFloat("consumptionT2", "Electricity consumption high", "Electricity", 20);
 			$this->RegisterVariableFloat("currentConsumption", "Current usage", "Watt.3680", 30);
@@ -45,6 +40,12 @@
 			parent::ApplyChanges();
 			
 			$this->SetTimerInterval("DataRemoval", $this->ReadPropertyInteger("DaysToKeep")*24*60*60*1000);
+
+			// Set variables for smart meter data
+			// Get ObjectID for first archive
+			$archives = IPS_GetInstanceListByModuleID("{43192F0B-135B-4CE7-A0A7-1475603F3060}");
+ 
+			
 			AC_SetLoggingStatus($this->GetIDForIdent('consumptionT1'), $archives[0], true);
 			AC_SetLoggingStatus($this->GetIDForIdent('consumptionT2'), $archives[0], true);
 			AC_SetLoggingStatus($this->GetIDForIdent('currentConsumption'), $archives[0], true);
