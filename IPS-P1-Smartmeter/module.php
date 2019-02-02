@@ -13,14 +13,7 @@
 			$instance = IPS_GetInstance($this->InstanceID);
 			$pid = $instance['ConnectionID'];
 			
-			if ($pid) {
-				$name = IPS_GetName($pid);
-				if ($name == "Serial Port") IPS_SetName($pid, "Serial Port for P1 smartmeter");
-			}
-			
-			// Seems to work for most P1 meters, so set this as standard.
-			COMPort_SetBaudRate($pid, 115200);
-			
+	
 			// Set variables used for settings.
 			$this->RegisterPropertyInteger("DaysToKeep", "10");
 			
@@ -33,19 +26,14 @@
 			$this->RegisterVariableFloat("consumptionT1", "Electricity consumption low", "Electricity", 10);
 			$this->RegisterVariableFloat("consumptionT2", "Electricity consumption high", "Electricity", 20);
 			$this->RegisterVariableFloat("currentConsumption", "Current usage", "Watt.3680", 30);
-			// AC_SetLoggingStatus($archives[0], $this->GetIDForIdent('consumptionT1'),  true);
-			// AC_SetLoggingStatus($this->GetIDForIdent('consumptionT2'), $archives[0], true);
-			// AC_SetLoggingStatus($this->GetIDForIdent('currentConsumption'), $archives[0], true);
+			
 
 			$this->RegisterVariableFloat("productionT1", "Electricity production low", "Electricity", 10);
 			$this->RegisterVariableFloat("productionT2", "Electricity production high", "Electricity", 20);
 			$this->RegisterVariableFloat("currentProduction", "Current production", "Watt.3680", 30);
-			//AC_SetLoggingStatus($this->GetIDForIdent('currentProduction'), $archives[0], true);
-			//AC_SetLoggingStatus($this->GetIDForIdent('productionT1'), $archives[0], true);
-			//AC_SetLoggingStatus($this->GetIDForIdent('productionT2'), $archives[0], true);
-			
+
 			$this->RegisterVariableFloat("consumptionGas", "Gas consumption", "Gas", 40);
-			//AC_SetLoggingStatus($this->GetIDForIdent('consumptionGas'), $archives[0], true);
+
 			
 			// Set timer for automatic data removal for historic data
 			$this->RegisterTimer("DataRemoval", 0, 'P1_PurgeOldData');
@@ -57,6 +45,14 @@
 			parent::ApplyChanges();
 			
 			$this->SetTimerInterval("DataRemoval", $this->ReadPropertyInteger("DaysToKeep")*24*60*60*1000);
+			AC_SetLoggingStatus($this->GetIDForIdent('consumptionT1'), $archives[0], true);
+			AC_SetLoggingStatus($this->GetIDForIdent('consumptionT2'), $archives[0], true);
+			AC_SetLoggingStatus($this->GetIDForIdent('currentConsumption'), $archives[0], true);
+			AC_SetLoggingStatus($this->GetIDForIdent('currentProduction'), $archives[0], true);
+			AC_SetLoggingStatus($this->GetIDForIdent('productionT1'), $archives[0], true);
+			AC_SetLoggingStatus($this->GetIDForIdent('productionT2'), $archives[0], true);
+			AC_SetLoggingStatus($this->GetIDForIdent('consumptionGas'), $archives[0], true);
+			
 		}
 		
 		public function PurgeOldData()
