@@ -46,18 +46,24 @@
 			$archives = IPS_GetInstanceListByModuleID("{43192F0B-135B-4CE7-A0A7-1475603F3060}");
  
 			
-			echo AC_SetLoggingStatus($this->GetIDForIdent('consumptionT1'), $archives[0], true);
-			echo AC_SetLoggingStatus($this->GetIDForIdent('consumptionT2'), $archives[0], true);
-			echo AC_SetLoggingStatus($this->GetIDForIdent('currentConsumption'), $archives[0], true);
-			echo AC_SetLoggingStatus($this->GetIDForIdent('currentProduction'), $archives[0], true);
-			echo AC_SetLoggingStatus($this->GetIDForIdent('productionT1'), $archives[0], true);
-			echo AC_SetLoggingStatus($this->GetIDForIdent('productionT2'), $archives[0], true);
-			echo AC_SetLoggingStatus($this->GetIDForIdent('consumptionGas'), $archives[0], true);
+			//AC_SetLoggingStatus($this->GetIDForIdent('consumptionT1'), $archives[0], true);
+			//AC_SetLoggingStatus($this->GetIDForIdent('consumptionT2'), $archives[0], true);
+			//AC_SetLoggingStatus($this->GetIDForIdent('currentConsumption'), $archives[0], true);
+			//AC_SetLoggingStatus($this->GetIDForIdent('currentProduction'), $archives[0], true);
+			//AC_SetLoggingStatus($this->GetIDForIdent('productionT1'), $archives[0], true);
+			//AC_SetLoggingStatus($this->GetIDForIdent('productionT2'), $archives[0], true);
+			//AC_SetLoggingStatus($this->GetIDForIdent('consumptionGas'), $archives[0], true);
 			
 		
 
 		}
 		
+		public function GetConfigurationForParent() {
+			
+			return "{\"BaudRate\": \"57600\", \"StopBits\": \"1\", \"DataBits\": \"8\", \"Parity\": \"None\"}";
+			
+		}
+
 		public function PurgeOldData()
 		{
 			IPS_LogMessage("P1 Smart meter", "Purge old data called");
