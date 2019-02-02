@@ -340,7 +340,7 @@ class IPS_MQTT_Client extends T2FModule {
         } else {
             $this->debug(__FUNCTION__, 'No Parent');
         }
-        $this->RegisterTimerNow('Ping', $this->mqtt->keepalive*1000,  'MQTT_Client_TimerEvent('.$this->InstanceID.');');
+        $this->RegisterTimerNow('Ping', $this->mqtt->keepalive*1000,  'MQTTC_TimerEvent('.$this->InstanceID.');');
         return $res;
 
     }//function
@@ -446,7 +446,7 @@ class IPS_MQTT_Client extends T2FModule {
                         $this->debug(__FUNCTION__,"Connected to ClientID $clientid");
                         $this->OSave($this->mqtt,"MQTT");
                         IPS_Sleep(500);
-                        $this->RegisterTimerNow('Ping', $this->mqtt->keepalive*1000,  'MQTT_Client_TimerEvent('.$this->InstanceID.');');
+                        $this->RegisterTimerNow('Ping', $this->mqtt->keepalive*1000,  'MQTTC_TimerEvent('.$this->InstanceID.');');
                     }else{
                         $ok = FALSE;
                     }
@@ -477,7 +477,7 @@ class IPS_MQTT_Client extends T2FModule {
                 //IPS_ApplyChanges($cID); //Neue Konfiguration übernehmen
             }
         }
-        $this->RegisterTimerNow('Ping', 0,  'MQTT_Client_TimerEvent('.$this->InstanceID.');');
+        $this->RegisterTimerNow('Ping', 0,  'MQTTC_TimerEvent('.$this->InstanceID.');');
 //            if($this->GetInstanceStatus() == self::ST_AKTIV ){
 //                $this->MQTTConnect();
 //            }
