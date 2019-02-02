@@ -48,7 +48,7 @@
 			//AC_SetLoggingStatus($this->GetIDForIdent('consumptionGas'), $archives[0], true);
 			
 			// Set timer for automatic data removal for historic data
-			$this->RegisterTimer("DataRemoval", $this->ReadPropertyInteger("DaystoKeep"), 'P1_PurgeOldData');
+			$this->RegisterTimer("DataRemoval", 0, 'P1_PurgeOldData');
 		}
 	
 		public function ApplyChanges()
