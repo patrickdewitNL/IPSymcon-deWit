@@ -222,7 +222,7 @@ class IPS_MQTT_Client extends T2FModule {
                 //$this->MQTTConnect();
                 break;
             case 10403: // Parent changed
-                IPS_LogMessage(__CLASS__,__FUNCTION__." Parend changed");
+                IPS_LogMessage(__CLASS__,__FUNCTION__." Parent changed");
                 break;
             case self::IPS_KERNELMESSAGE:
                 $kmsg=$Data[0];
