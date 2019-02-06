@@ -16,7 +16,7 @@
 	
 			// Set variables used for settings.
 			$this->RegisterPropertyInteger("DaysToKeep", "10");
-			
+			$this->RegisterPropertyBoolean("SaveData", true);
 					
 			$this->RegisterVariableFloat("consumptionT1", "Electricity consumption low", "Electricity", 10);
 			$this->RegisterVariableFloat("consumptionT2", "Electricity consumption high", "Electricity", 20);
@@ -46,7 +46,7 @@
 			$archives = IPS_GetInstanceListByModuleID("{43192F0B-135B-4CE7-A0A7-1475603F3060}");
  
 			
-			//AC_SetLoggingStatus($this->GetIDForIdent('consumptionT1'), $archives[0], true);
+			AC_SetLoggingStatus($archives[0], $this->GetIDForIdent('consumptionT1'), true);
 			//AC_SetLoggingStatus($this->GetIDForIdent('consumptionT2'), $archives[0], true);
 			//AC_SetLoggingStatus($this->GetIDForIdent('currentConsumption'), $archives[0], true);
 			//AC_SetLoggingStatus($this->GetIDForIdent('currentProduction'), $archives[0], true);
@@ -58,11 +58,7 @@
 
 		}
 		
-		public function GetConfigurationForParent() {
-			
-			return "{\"BaudRate\": \"57600\", \"StopBits\": \"1\", \"DataBits\": \"8\", \"Parity\": \"None\"}";
-			
-		}
+
 
 		public function PurgeOldData()
 		{
