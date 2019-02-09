@@ -133,7 +133,7 @@
 		{
 			
 			$data = json_decode($JSONString);
-			IPS_LogMessage("P1 Smart Meter ReceiveData", utf8_decode($data->Buffer));
+			
 
 			$telegram = '';
 			
