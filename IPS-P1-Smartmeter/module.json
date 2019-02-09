@@ -4,8 +4,8 @@
 	"type": 3,
 	"vendor": "deWit",
 	"aliases": ["P1 Smart meter"],
-	"parentRequirements": ["{43192F0B-135B-4CE7-A0A7-1475603F3060}"],
+	"parentRequirements": ["{79827379-F36E-4ADA-8A95-5F8D1DC92FA9}"],
 	"childRequirements": [],
-	"implemented": [],
+	"implemented": ["{018EF6B5-AB94-40C6-AA53-46943E824ACF}", "{F7B329D4-6E4E-4D0C-B059-E1894B23D8CE}"],
 	"prefix": "P1"
 }
