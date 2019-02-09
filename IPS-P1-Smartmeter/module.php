@@ -135,7 +135,7 @@
 			$data = json_decode($JSONString);
 			$this->SendDebug('P1 Receivedata', $data, 0);
 
-			telegram = ''
+			telegram = '';
 			
 			//data from buffer variable
 			$buffer= $this->GetBuffer("P1");
