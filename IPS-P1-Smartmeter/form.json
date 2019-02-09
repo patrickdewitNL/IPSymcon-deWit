@@ -4,6 +4,7 @@
 		{ "type": "Label", "label": "This module creates various variables that contain the smart meter output, please indicate if IP Symcon should keep track of the changes of these variables to allow daily totals and graphs:" },
 		{ "name": "SaveData", "type": "CheckBox", "caption": "Retain data for created variables:" },
 		{ "type": "Label", "label": "To prevent build-up from data, the raw data is automatically deleted after a given amount of days" },
+		{ "name": "AutoDeleteData", "type": "CheckBox", "caption": "Auto delete data:" },
 		{ "name": "DaysToKeep", "type": "NumberSpinner", "caption": "Days to keep:" }
 		
 	],
