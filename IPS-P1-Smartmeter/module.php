@@ -91,20 +91,21 @@
 		
 		
 		
-		private function ParseP1Telegram($Telegram)
+		private function ParseP1Telegram($telegram)
 		{
 				if ($Telegram != '')
 				{
+					IPS_LogMessage("P1 Smart meter telegram", $telegram);
 					// Get and save current usage
-					preg_match('@(1-0:1\.7\.0) ?\((\d+)\.(\d+)@', $Telegram, $matches);
+					preg_match('@(1-0:1\.7\.0) ?\((\d+)\.(\d+)@', $telegram, $matches);
 					SetValue($this->GetIDForIdent("currentConsumption"), $matches[2] * 1000 + $matches[3]);
 
 					// Get and save current production
-					preg_match('@(1-0:2\.7\.0) ?\((\d+)\.(\d+)@', $Telegram, $matches);
+					preg_match('@(1-0:2\.7\.0) ?\((\d+)\.(\d+)@', $telegram, $matches);
 					SetValue($this->GetIDForIdent("currentProduction"), $matches[2] * 1000 + $matches[3]);
 					
 					// Get and save gas usage
-					preg_match('@(0-1:24\.2\.1) ?(\(.+\()(\d+)\.(\d+)@', $Telegram, $matches);
+					preg_match('@(0-1:24\.2\.1) ?(\(.+\()(\d+)\.(\d+)@', $telegram, $matches);
 					SetValue($this->GetIDForIdent("consumptionGas"), $matches[3] + 0.001 * $matches[4]);
 
 					// get afname-laag  
