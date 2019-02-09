@@ -9,7 +9,7 @@
 			parent::Create();
 			
 			// Requires a Serialport I/O as parent.
-			$this->RequireParent("{6DC3D946-0D31-450F-A8C6-C42DB8D7D4F1}");
+			$this->ConnectParent("{6DC3D946-0D31-450F-A8C6-C42DB8D7D4F1}");
 			$instance = IPS_GetInstance($this->InstanceID);
 			$pid = $instance['ConnectionID'];
 			
