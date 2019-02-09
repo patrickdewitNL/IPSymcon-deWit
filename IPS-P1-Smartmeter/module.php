@@ -95,7 +95,7 @@
 		{
 				if ($telegram != '')
 				{
-					IPS_LogMessage("P1 Smart meter telegram", $telegram);
+					IPS_LogMessage("P1 Smart meter", "Parsing new telegram");
 					// Get and save current usage
 					preg_match('@(1-0:1\.7\.0) ?\((\d+)\.(\d+)@', $telegram, $matches);
 					SetValue($this->GetIDForIdent("currentConsumption"), $matches[2] * 1000 + $matches[3]);
