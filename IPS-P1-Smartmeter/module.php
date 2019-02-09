@@ -133,9 +133,13 @@
 		{
 			
 			$data = json_decode($JSONString);
-            
+			$this->SendDebug('P1 Receivedata', $data, 0);
+
+			telegram = ''
+			
 			//data from buffer variable
-            $buffer = $this->GetBuffer();
+			$buffer= $this->GetBuffer("P1")
+			$this->SendDebug('P1 buffercontent', $data, 0);
 			
 			// continue to add
 			$buffer .= utf8_decode($data->Buffer);
@@ -149,7 +153,7 @@
 			}
 					
 			// Set new data in buffer
-			$this->SetBuffer($buffer);
+			$this->SetBuffer("P1",$buffer);
 			
 		
 		}
