@@ -138,7 +138,7 @@
 			telegram = ''
 			
 			//data from buffer variable
-			$buffer= $this->GetBuffer("P1")
+			$buffer= $this->GetBuffer("P1");
 			$this->SendDebug('P1 buffercontent', $data, 0);
 			
 			// continue to add
