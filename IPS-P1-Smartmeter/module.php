@@ -93,7 +93,7 @@
 		
 		private function ParseP1Telegram($telegram)
 		{
-				if ($Telegram != '')
+				if ($telegram != '')
 				{
 					IPS_LogMessage("P1 Smart meter telegram", $telegram);
 					// Get and save current usage
