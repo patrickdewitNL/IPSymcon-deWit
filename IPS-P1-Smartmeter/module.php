@@ -49,19 +49,19 @@
  
 			
 				AC_SetLoggingStatus($archives[0], $this->GetIDForIdent('consumptionT1'), true);
-				AC_SetAggregationType ($archives[0], $this->GetIDForIdent('consumptionT1'), 1)
+				AC_SetAggregationType ($archives[0], $this->GetIDForIdent('consumptionT1'), 1);
 
 				AC_SetLoggingStatus($archives[0], $this->GetIDForIdent('consumptionT2'), true);
-				AC_SetAggregationType ($archives[0], $this->GetIDForIdent('consumptionT2'), 1)
+				AC_SetAggregationType ($archives[0], $this->GetIDForIdent('consumptionT2'), 1);
 
 				AC_SetLoggingStatus($archives[0], $this->GetIDForIdent('currentConsumption'), true);
 				AC_SetLoggingStatus($archives[0], $this->GetIDForIdent('currentProduction'), true);
 
 				AC_SetLoggingStatus($archives[0], $this->GetIDForIdent('productionT1'), true);
-				AC_SetAggregationType ($archives[0], $this->GetIDForIdent('productionT1'), 1)
+				AC_SetAggregationType ($archives[0], $this->GetIDForIdent('productionT1'), 1);
 
 				AC_SetLoggingStatus($archives[0], $this->GetIDForIdent('productionT2'), true);
-				AC_SetAggregationType ($archives[0], $this->GetIDForIdent('productionT2'), 1)
+				AC_SetAggregationType ($archives[0], $this->GetIDForIdent('productionT2'), 1);
 
 				AC_SetLoggingStatus($archives[0], $this->GetIDForIdent('consumptionGas'), true);
 
